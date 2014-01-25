@@ -1,20 +1,20 @@
-Spice [![Build Status](https://travis-ci.org/robotlolita/spice.png)](https://travis-ci.org/robotlolita/spice) ![Dependencies Status](https://david-dm.org/killdream/spice.png)
+Spice
 =====
 
 No-frills string interpolation library.
 
 ```js
-var spice = require('spice')
-spice('Hello, {:subject}!', { subject: 'world' })
+var pep = require('pep')
+pep('Hello, {:subject}!', { subject: 'world' })
 // => (string) "Hello, world!"
 ```
 
 Or, alternatively, mess with the `String#prototype`:
 
 ```js
-var spice = require('spice')
+var pep = require('pep')
 String.prototype.format = function(mappings) {
-  return spice(this, mappings)
+  return pep(this, mappings)
 }
 
 'Hello, {:subject}!'.format({
@@ -29,18 +29,18 @@ String.prototype.format = function(mappings) {
 The easiest way is to grab it from NPM (use [browserify][] if you're on a
 Browser):
 
-    $ npm install spice
+    $ npm install pep
     # Then require it as usual
-    node> var spice = require('spice')
+    node> var pep = require('pep')
     
 If you **really** want to suffer with old and terrible module/no-module
 formats, you can run `make bundle` yourself:
 
-    $ git clone git://github.com/killdream/spice
-    $ cd spice
+    $ git clone git://github.com/jameswomack/pep
+    $ cd pep
     $ npm install
     $ make bundle
-    # And incldue `dist/spice.umd.js` on your AMD/script tag/whatever.
+    # And incldue `dist/pep.umd.js` on your AMD/script tag/whatever.
 
 
 [browserify]: https://github.com/substack/node-browserify
@@ -86,7 +86,7 @@ format("Hello, {\\:subject}!", { subject: "world" })
 
 ES3 and beyond!
 
-[![browser support](https://ci.testling.com/killdream/spice.png)](http://ci.testling.com/killdream/spice)
+[![browser support](https://ci.testling.com/jameswomack/pep.png)](http://ci.testling.com/jameswomack/pep)
 
 
 ## Testing
