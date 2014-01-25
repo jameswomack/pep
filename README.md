@@ -1,7 +1,9 @@
-Spice
+Pep
 =====
 
-No-frills string interpolation library.
+A peppy string interpolation library with filters for inflection, titleization & more.
+
+`npm install pep`
 
 ```js
 var pep = require('pep')

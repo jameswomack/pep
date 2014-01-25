@@ -1,6 +1,6 @@
 {
   "name": "pep",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Peppy string interpolation library with common value filters such as 'pluralize'.",
   "main": "pep.js",
   "scripts": {
