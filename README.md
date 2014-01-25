@@ -1,4 +1,4 @@
-Spice [![Build Status](https://travis-ci.org/killdream/spice.png)](https://travis-ci.org/killdream/spice) ![Dependencies Status](https://david-dm.org/killdream/spice.png)
+Spice [![Build Status](https://travis-ci.org/robotlolita/spice.png)](https://travis-ci.org/robotlolita/spice) ![Dependencies Status](https://david-dm.org/killdream/spice.png)
 =====
 
 No-frills string interpolation library.
