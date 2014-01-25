@@ -4,6 +4,7 @@
 //
 // :licence: MIT
 //   Copyright (c) 2013 Quildreen "Sorella" Motta
+//   Copyright (c) 2014 James J. Womack
 //
 //   Permission is hereby granted, free of charge, to any person
 //   obtaining a copy of this software and associated documentation
@@ -25,6 +26,7 @@
 //   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //   SOFTWARE.
 
+var inflect = require('i')(true);
 
 
 // -- Constants & Aliases ----------------------------------------------
@@ -98,10 +100,21 @@ function format(string, mappings) {
   return string.replace(templateRE, resolve_identifier)
 
   function resolve_identifier(match, mod, key) {
-    return mod == '\\:'?      '{:' + key + '}'
-    :      key in mappings?   as_value(mappings[key], key)
-    :      /* otherwise */    '' }}
+    var inflectMethodName;
+    var keyComponents = key.split('|');
 
+    if (keyComponents.length > 1) {
+      inflectMethodName = keyComponents[1];
+      key = keyComponents[0];
+    }
+
+    console.log(inflectMethodName, key);
+
+    return mod == '\\:' ?      '{:' + key + '}'
+    :      key in mappings?   (inflect[inflectMethodName]?as_value(mappings[key], key)[inflectMethodName]:as_value(mappings[key], key))
+    :      /* otherwise */    '';
+  }
+}
 
 
 // -- Exports ----------------------------------------------------------

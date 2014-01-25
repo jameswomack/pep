@@ -26,4 +26,11 @@ spec('λ format', function(it) {
     function id(a){ return a }
     expect(_('foo {:bar}', {bar:id})).to.equal('foo bar')
   })
+  
+  it('Should replace occurrences in the mapping by a filtered value if | is present.', function() {
+    expect(_('foo {:bar|pluralize}', {bar:'bar'})).to.equal('foo bars')
+    expect(_('foo {:bar|titleize} {:baz|singularize}', { bar: 'carrot'
+                                  , baz: 'cherries' })).to.equal('foo Carrot cherry')
+  })
+
 })
