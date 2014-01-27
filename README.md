@@ -6,22 +6,22 @@ A peppy string interpolation library with filters for inflection, titleization &
 `npm install pep`
 
 ```js
-var pep = require('pep')
-pep('Hello, {:subject}!', { subject: 'world' })
-// => (string) "Hello, world!"
+var pep = require('pep');
+pep('Hello, {:subject|pluralize|titleize}!', { subject: 'world' });
+// => (string) "Hello, Worlds!"
 ```
 
 Or, alternatively, mess with the `String#prototype`:
 
 ```js
-var pep = require('pep')
+var pep = require('pep');
 String.prototype.format = function(mappings) {
-  return pep(this, mappings)
+  return pep(this, mappings);
 }
 
 'Hello, {:subject}!'.format({
   subject: 'world'
-})
+});
 // => (string) "Hello, world!"
 ```
 

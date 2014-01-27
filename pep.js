@@ -28,42 +28,38 @@
 
 var inflect = require('i')(true);
 
-
 // -- Constants & Aliases ----------------------------------------------
-var templateRE = /{(\\?:)([^}]+)}/g
+var templateRE = /{(\\?:)([^}]+)}/g;
 
 
-
 // -- Helpers ----------------------------------------------------------
 
-// ### Function callable_p
+// ### Function isCallable
 //
 // Is a subject callable?
 //
 // :: A -> bool
-function callable_p(subject) {
-  return typeof subject == 'function' }
+function isCallable(subject) {
+  return typeof subject === 'function';
+}
 
 
-// ### Function as_value
+// ### Function asValue
 //
 // Returns the actual substitution for the given value/key.
 //
 // :: template-value, string -> string
-function as_value(value, key) {
-  return callable_p(value)?  value(key)
-  :      /* otherwise */     value }
+function asValue(value, key) {
+  return isCallable(value) ?  value(key) : value;
+}
 
 
-
-// -- Interfaces -------------------------------------------------------
 
 // ### Interface template-value
 //
 // :: string | (string -> string)
 
 
-
 // -- Core implementation ----------------------------------------------
 
 // ### Function format
@@ -96,26 +92,37 @@ function as_value(value, key) {
 //
 // :: string, { string -> template-value } -> string
 function format(string, mappings) {
-  mappings = mappings || {}
-  return string.replace(templateRE, resolve_identifier)
+  mappings = mappings || {};
 
-  function resolve_identifier(match, mod, key) {
-    var inflectMethodName;
+  return string.replace(templateRE, function (match, mod, key) {
+    var inflectMethodNames = [];
     var keyComponents = key.split('|');
+    var returnString = '';
 
     if (keyComponents.length > 1) {
-      inflectMethodName = keyComponents[1];
       key = keyComponents[0];
+      inflectMethodNames = keyComponents.slice(1);
     }
 
-    console.log(inflectMethodName, key);
+    var templateDelimiterIsEscaped = (mod == '\\:');
 
-    return mod == '\\:' ?      '{:' + key + '}'
-    :      key in mappings?   (inflect[inflectMethodName]?as_value(mappings[key], key)[inflectMethodName]:as_value(mappings[key], key))
-    :      /* otherwise */    '';
-  }
+    if (templateDelimiterIsEscaped) {
+      returnString = '{:' + key + '}';
+    } else {
+      if (key in mappings) {
+        returnString = asValue(mappings[key], key);
+        for (var index in inflectMethodNames) {
+          var inflectMethodName = inflectMethodNames[index];
+          var inflectMethod = inflect[inflectMethodName];
+          if (inflectMethod) {
+            returnString = returnString[inflectMethodName];
+          }
+        }
+      }
+    }
+
+    return returnString;
+  });
 }
 
-
-// -- Exports ----------------------------------------------------------
-module.exports = format
+module.exports = format;
