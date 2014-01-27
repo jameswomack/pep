@@ -1,7 +1,7 @@
 Pep
 =====
 
-A peppy string interpolation library with filters for inflection, titleization & more.
+A peppy string interpolation library with filters for inflection, articlization, titleization & more.
 
 `npm install pep`
 

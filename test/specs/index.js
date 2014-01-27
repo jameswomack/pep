@@ -27,10 +27,14 @@ spec('λ format', function(it) {
     expect(_('foo {:bar}', {bar:id})).to.equal('foo bar')
   })
   
-  it('Should replace occurrences in the mapping by a filtered value if | is present.', function() {
+  it('Should replace occurrences in the mapping by a inflect value if | is present.', function() {
     expect(_('foo {:bar|pluralize}', {bar:'bar'})).to.equal('foo bars')
-    expect(_('foo {:bar|titleize} {:baz|singularize}', { bar: 'carrot'
-                                  , baz: 'cherries' })).to.equal('foo Carrot cherry')
+    expect(_('foo {:bar|titleize|pluralize} {:baz|singularize}', { bar: 'carrot'
+                                  , baz: 'cherries' })).to.equal('foo Carrots cherry')
   })
+  
+  it('Should replace occurrences in the mapping by an articlize value if |articlize is present.', function() {
+    expect(_('foo {:bar|articlize}', {bar:'bar'})).to.equal('foo a bar')
+  });
 
-})
+});

@@ -1,7 +1,7 @@
 {
   "name": "pep",
-  "version": "1.0.5",
-  "description": "Peppy string interpolation library with common value filters such as 'pluralize'.",
+  "version": "1.0.6",
+  "description": "Peppy string interpolation library with common value filters such as 'pluralize' & 'articlize'.",
   "main": "pep.js",
   "scripts": {
     "test": "make test"
@@ -15,7 +15,8 @@
     "formatting",
     "interpolation",
     "inflection",
-    "filters"
+    "filters",
+    "articlize"
   ],
   "author": "James J. Womack (http://github.com/jameswomack)",
   "license": "MIT",
@@ -50,6 +51,7 @@
   },
   "readmeFilename": "README.md",
   "dependencies": {
-    "i": "~0.3.2"
+    "i": "~0.3.2",
+    "articles": "~0.2.1"
   }
 }

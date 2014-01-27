@@ -28,11 +28,20 @@
 
 var inflect = require('i')(true);
 
-// -- Constants & Aliases ----------------------------------------------
+// Add articlize capability 
+var articles = require('articles');
+Object.defineProperty(String.prototype, 'articlize', {
+  get: function(){
+    return articles.articlize(this);
+  }
+});
+inflect.articlize = articles.articlize;
+
+// -- Constants & Aliases
 var templateRE = /{(\\?:)([^}]+)}/g;
 
 
-// -- Helpers ----------------------------------------------------------
+// -- Helpers
 
 // ### Function isCallable
 //
@@ -60,7 +69,7 @@ function asValue(value, key) {
 // :: string | (string -> string)
 
 
-// -- Core implementation ----------------------------------------------
+// -- Core implementation
 
 // ### Function format
 //
