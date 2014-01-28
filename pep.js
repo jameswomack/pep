@@ -27,6 +27,7 @@
 //   SOFTWARE.
 
 var inflect = require('i')(true);
+var Ephemeral = require('ephemeral');
 
 // Add articlize capability 
 var articles = require('articles');
@@ -118,13 +119,25 @@ function format(string, mappings) {
     if (templateDelimiterIsEscaped) {
       returnString = '{:' + key + '}';
     } else {
+      var value = asValue(mappings[key], key);
       if (key in mappings) {
-        returnString = asValue(mappings[key], key);
-        for (var index in inflectMethodNames) {
-          var inflectMethodName = inflectMethodNames[index];
-          var inflectMethod = inflect[inflectMethodName];
-          if (inflectMethod) {
-            returnString = returnString[inflectMethodName];
+        if (value instanceof Date) {
+          var ephemeralMethodName = inflectMethodNames[0];
+          var ephemeral = Ephemeral(value);
+          var ephemeralMethod = ephemeral[ephemeralMethodName];
+          if (ephemeralMethod) {
+            returnString = ephemeralMethod();
+          } else {
+            returnString = ephemeral.formattedDateWithPreposition(ephemeralMethodName);
+          }
+        } else {
+          returnString = value;
+          for (var index in inflectMethodNames) {
+            var inflectMethodName = inflectMethodNames[index];
+            var inflectMethod = inflect[inflectMethodName];
+            if (inflectMethod) {
+              returnString = inflect[inflectMethodName](returnString);
+            }
           }
         }
       }
