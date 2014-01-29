@@ -29,7 +29,7 @@
 var inflect = require('i')(true);
 var Ephemeral = require('ephemeral');
 
-// Add articlize capability 
+// Add articlize capability
 var articles = require('articles');
 Object.defineProperty(String.prototype, 'articlize', {
   get: function(){
@@ -123,10 +123,10 @@ function format(string, mappings) {
       if (key in mappings) {
         if (value instanceof Date) {
           var ephemeralMethodName = inflectMethodNames[0];
-          var ephemeral = Ephemeral(value);
+          var ephemeral = new Ephemeral(value);
           var ephemeralMethod = ephemeral[ephemeralMethodName];
           if (ephemeralMethod) {
-            returnString = ephemeralMethod();
+            returnString = ephemeralMethod.call(ephemeral);
           } else {
             returnString = ephemeral.formattedDateWithPreposition(ephemeralMethodName);
           }

@@ -1,6 +1,6 @@
 {
   "name": "pep",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Peppy string interpolation library with value filters such as 'pluralize' & 'articlize'.",
   "main": "pep.js",
   "scripts": {
@@ -53,6 +53,6 @@
   "dependencies": {
     "i": "~0.3.2",
     "articles": "~0.2.1",
-    "ephemeral": "0.0.2"
+    "ephemeral": "0.0.3"
   }
 }
