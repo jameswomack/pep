@@ -104,7 +104,7 @@ function asValue(value, key) {
 function format(string, mappings) {
   mappings = mappings || {};
 
-  return string.replace(templateRE, function (match, mod, key) {
+  return string.replace(templateRE, function (match, mod, key, index) {
     var inflectMethodNames = [];
     var keyComponents = key.split('|');
     var returnString = '';
@@ -126,14 +126,22 @@ function format(string, mappings) {
           var ephemeral = new Ephemeral(value);
           var ephemeralMethod = ephemeral[ephemeralMethodName];
           if (ephemeralMethod) {
-            returnString = ephemeralMethod.call(ephemeral);
+            if (index) {
+              returnString = ephemeralMethod.call(ephemeral);
+            } else {
+              returnString = ephemeralMethod.call(ephemeral, true);
+            }
           } else {
-            returnString = ephemeral.formattedDateWithPreposition(ephemeralMethodName);
+            if (index) {
+              returnString = ephemeral.formattedDateWithPreposition(ephemeralMethodName);
+            } else {
+              returnString = ephemeral.formattedDate(ephemeralMethodName);
+            }
           }
         } else {
           returnString = value;
-          for (var index in inflectMethodNames) {
-            var inflectMethodName = inflectMethodNames[index];
+          for (var inflectionIndex in inflectMethodNames) {
+            var inflectMethodName = inflectMethodNames[inflectionIndex];
             var inflectMethod = inflect[inflectMethodName];
             if (inflectMethod) {
               returnString = inflect[inflectMethodName](returnString);
