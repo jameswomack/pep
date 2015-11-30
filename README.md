@@ -1,9 +1,11 @@
 Pep
 =====
 
+[![Build Status](https://travis-ci.org/jameswomack/pep.svg?branch=master)](https://travis-ci.org/jameswomack/pep)
+
 A peppy string interpolation library with filters for inflection, articlization, titleization & more.
 
-`npm install pep`
+`npm i pep -SE`
 
 ```js
 var pep = require('pep');
@@ -31,7 +33,7 @@ String.prototype.format = function(mappings) {
 The easiest way is to grab it from NPM (use [browserify][] if you're on a
 Browser):
 
-    $ npm install pep
+    $ npm i pep
     # Then require it as usual
     node> var pep = require('pep')
     

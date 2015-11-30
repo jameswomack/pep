@@ -1,15 +1,15 @@
-targets		 := spice.umd.js
+targets		 := pep.umd.js
 bin        := $(shell npm bin)
-browserify := $(bin)/browserify spice.js
+browserify := $(bin)/browserify pep.js
 
 # -- Building --
 dist/${targets}: dist
-	$(browserify) --standalone spice > $@
+	$(browserify) --standalone pep > $@
 
 dist:
 	mkdir dist
 
-bundle: dist/spice.umd.js
+bundle: dist/pep.umd.js
 
 clean: dist
 	rm -rf dist

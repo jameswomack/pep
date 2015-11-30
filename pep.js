@@ -1,10 +1,10 @@
-// # Module spice
+// # Module pep
 //
 // No-frills string interpolation
 //
 // :licence: MIT
 //   Copyright (c) 2013 Quildreen "Sorella" Motta
-//   Copyright (c) 2014 James J. Womack
+//   Copyright (c) 2015 James J. Womack
 //
 //   Permission is hereby granted, free of charge, to any person
 //   obtaining a copy of this software and associated documentation
@@ -106,7 +106,7 @@ function format(string, mappings) {
 
   return string.replace(templateRE, function (match, mod, key, index) {
     var inflectMethodNames = [];
-    var keyComponents = key.split('|');
+    const keyComponents = key.split('|');
     var returnString = '';
 
     if (keyComponents.length > 1) {
