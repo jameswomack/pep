@@ -1,6 +1,6 @@
 {
   "name": "pep",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Peppy string interpolation library with value filters such as 'pluralize' & 'articlize'.",
   "main": "pep.js",
   "scripts": {
@@ -21,10 +21,10 @@
   "author": "James J. Womack (http://github.com/jameswomack)",
   "license": "MIT",
   "devDependencies": {
-    "brofist-tap": "~0.1.0",
-    "chai": "~1.6.0",
-    "brofist": "~0.2.2",
-    "browserify": "~2.14.1"
+    "brofist": "0.3.1",
+    "brofist-tap": "0.2.0",
+    "browserify": "12.0.1",
+    "chai": "3.4.1"
   },
   "testling": {
     "files": "test/tap.js",
@@ -40,7 +40,7 @@
   },
   "calliope": {
     "output": "docs/api",
-    "copyright": "© 2013 Quildreen \"Sorella\" Motta, 2014 James J. Womack",
+    "copyright": "© 2013 Quildreen \"Sorella\" Motta, 2015 James J. Womack",
     "packages": [
       {
         "files": [
@@ -51,8 +51,8 @@
   },
   "readmeFilename": "README.md",
   "dependencies": {
-    "i": "~0.3.2",
-    "articles": "~0.2.1",
-    "ephemeral": "0.0.6"
+    "articles": "0.2.1",
+    "ephemeral": "0.0.6",
+    "i": "0.3.3"
   }
 }
